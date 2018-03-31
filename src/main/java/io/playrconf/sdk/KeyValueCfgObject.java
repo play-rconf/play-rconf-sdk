@@ -59,7 +59,8 @@ public final class KeyValueCfgObject {
             && cleanedValue.compareToIgnoreCase("null") != 0) {
 
             // Check if value is a boolean
-            if (cleanedValue.compareToIgnoreCase("true") == 0 || cleanedValue.compareToIgnoreCase("false") == 0) {
+            if (cleanedValue.compareToIgnoreCase("true") == 0
+                || cleanedValue.compareToIgnoreCase("false") == 0) {
                 this.value = Boolean.parseBoolean(cleanedValue);
             } else {
                 try {

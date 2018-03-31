@@ -60,8 +60,9 @@ public interface Provider {
      * @param config          The provider configuration
      * @param kvObjConsumer   The Key/Value object consumer
      * @param fileObjConsumer The File object consumer
+     * @throws RemoteConfException If something goes wrong
      */
     void loadData(final Config config,
                   final Consumer<KeyValueCfgObject> kvObjConsumer,
-                  final Consumer<FileCfgObject> fileObjConsumer);
+                  final Consumer<FileCfgObject> fileObjConsumer) throws RemoteConfException;
 }

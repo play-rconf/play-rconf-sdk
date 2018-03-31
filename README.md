@@ -58,8 +58,13 @@ public class MyCustomProvider extends AbstractProvider {
     @Override
     public void loadData(final Config config,
                          final Consumer<KeyValueCfgObject> kvObjConsumer,
-                         final Consumer<FileCfgObject> fileObjConsumer) {
+                         final Consumer<FileCfgObject> fileObjConsumer) throw RemoteConfException {
         throw new NotImplementedException();
     }
 }
 ```
+
+
+
+## License
+This project is released under terms of the [MIT license](https://raw.githubusercontent.com/play-rconf/play-rconf-sdk/master/LICENSE).
