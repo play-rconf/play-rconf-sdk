@@ -50,7 +50,7 @@ public final class Version {
             synchronized (Version.class) {
                 final Properties properties = new Properties();
                 final InputStream is = Version.class.getClassLoader()
-                    .getResourceAsStream("/playrconf-sdk.properties");
+                    .getResourceAsStream("playrconf-sdk.properties");
                 try {
                     properties.load(is);
                     Version.sdkVersion = properties.getProperty("playrconf.sdk.version", "unknown");
