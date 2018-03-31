@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.playrconf.sdk;
+package io.playrconf.sdk.exception;
 
 /**
  * RemoteConfException.
@@ -50,37 +50,5 @@ public class RemoteConfException extends RuntimeException {
      */
     public RemoteConfException(final String message, final Exception cause) {
         super(message, cause);
-    }
-
-    /**
-     * BadValue.
-     *
-     * @author Thibault Meyer
-     * @since 18.03.31
-     */
-    public static final class BadValue extends RemoteConfException {
-
-        /**
-         * Constructs a new bad value exception with the specified "path"
-         * and detail message.
-         *
-         * @param path    The key path
-         * @param message The detail message
-         */
-        public BadValue(final String path, final String message) {
-            this(path, message, null);
-        }
-
-        /**
-         * Constructs a new bad value exception with the specified "path",
-         * detail message and cause.
-         *
-         * @param path    The key path
-         * @param message The detail message
-         * @param cause   The cause
-         */
-        public BadValue(final String path, final String message, final Exception cause) {
-            super("Invalid value at '" + path + "': " + message, cause);
-        }
     }
 }

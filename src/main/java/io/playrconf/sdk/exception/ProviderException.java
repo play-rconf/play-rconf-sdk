@@ -21,49 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.playrconf.sdk;
-
-import com.typesafe.config.Config;
-import io.playrconf.sdk.exception.RemoteConfException;
-
-import java.util.function.Consumer;
+package io.playrconf.sdk.exception;
 
 /**
+ * This exception is thrown when something goes wrong
+ * with the provider (can't connect, bad response, ...).
+ *
  * @author Thibault Meyer
  * @since 18.03.31
  */
-public interface Provider {
+public final class ProviderException extends RemoteConfException {
 
-    /**
-     * Retrieves the provider name.
-     *
-     * @return The provider name
-     */
-    String getName();
+    public ProviderException(final String message) {
+        super(message);
+    }
 
-    /**
-     * Retrieves the provider version.
-     *
-     * @return The provider version
-     */
-    String getVersion();
-
-    /**
-     * Retrieves the provider configuration object name.
-     *
-     * @return The configuration object name
-     */
-    String getConfigurationObjectName();
-
-    /**
-     * Retrieves data from the provider.
-     *
-     * @param config          The provider configuration
-     * @param kvObjConsumer   The Key/Value object consumer
-     * @param fileObjConsumer The File object consumer
-     * @throws RemoteConfException If something goes wrong
-     */
-    void loadData(final Config config,
-                  final Consumer<KeyValueCfgObject> kvObjConsumer,
-                  final Consumer<FileCfgObject> fileObjConsumer) throws RemoteConfException;
+    public ProviderException(final String message, final Exception cause) {
+        super(message, cause);
+    }
 }
