@@ -21,50 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.playrconf.sdk;
-
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigException;
-import io.playrconf.sdk.exception.RemoteConfException;
-
-import java.util.function.Consumer;
+package io.playrconf.sdk.exception;
 
 /**
+ * This exception is thrown when file can't be saved.
+ *
  * @author Thibault Meyer
  * @since 18.03.31
  */
-public interface Provider {
+public class StorageException extends RemoteConfException {
 
     /**
-     * Retrieves the provider name.
+     * Constructs a new storage exception with the specified "path"
+     * and detail message.
      *
-     * @return The provider name
+     * @param path    The key path
+     * @param message The detail message
      */
-    String getName();
+    public StorageException(final String path, final String message) {
+        this(path, message, null);
+    }
 
     /**
-     * Retrieves the provider version.
+     * Constructs a new storage exception with the specified "path",
+     * detail message and cause.
      *
-     * @return The provider version
+     * @param path    The key path
+     * @param message The detail message
+     * @param cause   The cause
      */
-    String getVersion();
-
-    /**
-     * Retrieves the provider configuration object name.
-     *
-     * @return The configuration object name
-     */
-    String getConfigurationObjectName();
-
-    /**
-     * Retrieves data from the provider.
-     *
-     * @param config          The provider configuration
-     * @param kvObjConsumer   The Key/Value object consumer
-     * @param fileObjConsumer The File object consumer
-     * @throws RemoteConfException If something goes wrong
-     */
-    void loadData(final Config config,
-                  final Consumer<KeyValueCfgObject> kvObjConsumer,
-                  final Consumer<FileCfgObject> fileObjConsumer) throws ConfigException, RemoteConfException;
+    public StorageException(final String path, final String message, final Exception cause) {
+        super("Can't save the file '" + path + "': " + message, cause);
+    }
 }

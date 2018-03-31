@@ -23,6 +23,9 @@
  */
 package io.playrconf.sdk;
 
+import io.playrconf.sdk.exception.BadValueException;
+import io.playrconf.sdk.exception.StorageException;
+
 import java.io.*;
 import java.util.Base64;
 
@@ -53,9 +56,10 @@ public final class FileCfgObject implements Closeable {
      * Build a new instance. The file instructions must follows
      * this format: "TARGET;BASE64_CONTENT"
      *
+     * @param key        The configuration key
      * @param rawContent The file instructions
      */
-    public FileCfgObject(final String rawContent) {
+    public FileCfgObject(final String key, final String rawContent) {
         final String[] data;
         if (rawContent.charAt(0) == '"' && rawContent.charAt(rawContent.length() - 1) == '"') {
             data = rawContent
@@ -70,20 +74,14 @@ public final class FileCfgObject implements Closeable {
             data = rawContent.split(";");
         }
 
-        this.is = new ByteArrayInputStream(
-            Base64.getDecoder().decode(data[1])
-        );
-        this.target = data[0].trim();
-    }
-
-    /**
-     * Build a new instance.
-     *
-     * @param content The Base64 encoded file content
-     * @param target  Where to save the file
-     */
-    public FileCfgObject(final String content, final String target) {
-        this(Base64.getDecoder().decode(content), target);
+        try {
+            this.is = new ByteArrayInputStream(
+                Base64.getDecoder().decode(data[1])
+            );
+            this.target = data[0].trim();
+        } catch (final IllegalArgumentException | IndexOutOfBoundsException ex) {
+            throw new BadValueException(key, ex.getMessage());
+        }
     }
 
     /**
@@ -122,7 +120,7 @@ public final class FileCfgObject implements Closeable {
             os.flush();
             os.close();
         } catch (final IOException ex) {
-            ex.printStackTrace();
+            throw new StorageException(this.target, ex.getMessage());
         }
     }
 

@@ -25,7 +25,7 @@ package io.playrconf.sdk.exception;
 
 /**
  * This exception is thrown when a configuration value
- * is not correct or missing.
+ * is not correct.
  *
  * @author Thibault Meyer
  * @since 18.03.31
