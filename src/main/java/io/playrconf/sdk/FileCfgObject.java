@@ -53,6 +53,11 @@ public final class FileCfgObject implements Closeable {
     private final String target;
 
     /**
+     * Content size.
+     */
+    private int size;
+
+    /**
      * Build a new instance. The file instructions must follows
      * this format: "TARGET;BASE64_CONTENT"
      *
@@ -75,10 +80,10 @@ public final class FileCfgObject implements Closeable {
         }
 
         try {
-            this.is = new ByteArrayInputStream(
-                Base64.getDecoder().decode(data[1])
-            );
+            final byte[] decodedData = Base64.getDecoder().decode(data[1]);
+            this.is = new ByteArrayInputStream(decodedData);
             this.target = data[0].trim();
+            this.size = decodedData.length;
         } catch (final IllegalArgumentException | IndexOutOfBoundsException ex) {
             throw new BadValueException(key, ex.getMessage());
         }
@@ -103,6 +108,11 @@ public final class FileCfgObject implements Closeable {
     public FileCfgObject(final InputStream is, final String target) {
         this.is = is;
         this.target = target.trim();
+        try {
+            this.size = is.available();
+        } catch (final IOException ignore) {
+            this.size = 0;
+        }
     }
 
     /**
@@ -133,17 +143,11 @@ public final class FileCfgObject implements Closeable {
 
     @Override
     public String toString() {
-        try {
-            return FileCfgObject.class.getName()
-                + "[size <- "
-                + this.is.available()
-                + " ; target <- "
-                + this.target + "]";
-        } catch (final IOException ignore) {
-            return FileCfgObject.class.getName()
-                + "[size <- 0 ; target <- "
-                + this.target
-                + "]";
-        }
+        return FileCfgObject.class.getName()
+            + "[size <- "
+            + this.size
+            + " ; target <- "
+            + this.target + "]";
+
     }
 }
