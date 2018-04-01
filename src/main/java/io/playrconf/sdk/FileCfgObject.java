@@ -121,14 +121,14 @@ public final class FileCfgObject implements Closeable {
     public void apply() {
         final File ofile = new File(this.target);
         try {
-            final OutputStream os = new FileOutputStream(ofile);
+            final FileOutputStream fos = new FileOutputStream(ofile);
             final byte[] buffer = new byte[128];
             int bytesRead;
             while ((bytesRead = this.is.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
+                fos.write(buffer, 0, bytesRead);
             }
-            os.flush();
-            os.close();
+            fos.flush();
+            fos.close();
         } catch (final IOException ex) {
             throw new StorageException(this.target, ex.getMessage());
         }
@@ -136,8 +136,8 @@ public final class FileCfgObject implements Closeable {
 
     @Override
     public void close() throws IOException {
-        if (is != null) {
-            is.close();
+        if (this.is != null) {
+            this.is.close();
         }
     }
 
