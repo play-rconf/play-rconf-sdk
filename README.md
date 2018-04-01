@@ -1,7 +1,7 @@
 # Play Remote Configuration - SDK
 
 
-[![Latest release](https://img.shields.io/badge/latest_release-18.04%20Update%201-orange.svg)](https://github.com/play-rconf/play-rconf-sdk/releases)
+[![Latest release](https://img.shields.io/badge/latest_release-18.04%22Update%201-orange.svg)](https://github.com/play-rconf/play-rconf-sdk/releases)
 [![JitPack](https://jitpack.io/v/play-rconf/play-rconf-sdk.svg)](https://jitpack.io/#play-rconf/play-rconf-sdk)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/play-rconf/play-rconf-sdk/master/LICENSE)
 

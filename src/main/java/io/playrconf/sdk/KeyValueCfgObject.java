@@ -92,12 +92,17 @@ public final class KeyValueCfgObject {
         appConfig
             .append(this.key)
             .append(" = ")
-            .append(this.value)
+            .append(this.value == null ? "null" : this.value)
             .append("\n");
     }
 
     @Override
     public String toString() {
-        return KeyValueCfgObject.class.getName() + "[" + " <- " + "]";
+        return KeyValueCfgObject.class.getName()
+            + "["
+            + this.key
+            + " <- "
+            + (this.value == null ? "null" : this.value)
+            + "]";
     }
 }
