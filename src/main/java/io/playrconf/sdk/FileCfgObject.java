@@ -143,7 +143,7 @@ public final class FileCfgObject implements Closeable {
 
     @Override
     public String toString() {
-        return FileCfgObject.class.getName()
+        return FileCfgObject.class.getSimpleName()
             + "[size <- "
             + this.size
             + " ; target <- "

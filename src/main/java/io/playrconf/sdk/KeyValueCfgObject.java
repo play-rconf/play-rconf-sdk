@@ -98,7 +98,7 @@ public final class KeyValueCfgObject {
 
     @Override
     public String toString() {
-        return KeyValueCfgObject.class.getName()
+        return KeyValueCfgObject.class.getSimpleName()
             + "["
             + this.key
             + " <- "
