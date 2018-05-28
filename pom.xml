@@ -6,7 +6,7 @@
 
     <groupId>io.play-rconf</groupId>
     <artifactId>play-rconf-sdk</artifactId>
-    <version>18.04u3</version>
+    <version>18.05</version>
     <name>Play Remote Configuration - SDK</name>
     <description>SDK to implement new remote configuration providers</description>
     <url>https://github.com/play-rconf/play-rconf-sdk</url>

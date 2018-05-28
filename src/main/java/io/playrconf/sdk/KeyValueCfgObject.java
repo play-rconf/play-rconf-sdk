@@ -44,6 +44,12 @@ public final class KeyValueCfgObject {
     private Object value;
 
     /**
+     * Flag to know if value must be masked when the
+     * method toString is used.
+     */
+    private boolean toStringWithMask;
+
+    /**
      * Build a new instance.
      *
      * @param key   The configuration key
@@ -96,13 +102,23 @@ public final class KeyValueCfgObject {
             .append("\n");
     }
 
+    /**
+     * Enable or disable the mask on value display by
+     * the method toString.
+     *
+     * @param mask Apply a mask?
+     */
+    public void setToStringWithMask(final boolean mask) {
+        this.toStringWithMask = mask;
+    }
+
     @Override
     public String toString() {
         return KeyValueCfgObject.class.getSimpleName()
             + "["
             + this.key
             + " <- "
-            + (this.value == null ? "null" : this.value)
+            + (this.value == null ? "null" : this.toStringWithMask ? "**********" : this.value)
             + "]";
     }
 }
