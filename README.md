@@ -2,7 +2,7 @@
 
 
 [![Latest release](https://img.shields.io/badge/latest_release-18.05-orange.svg)](https://github.com/play-rconf/play-rconf-sdk/releases)
-[![JitPack](https://jitpack.io/v/play-rconf/play-rconf-sdk.svg)](https://jitpack.io/#play-rconf/play-rconf-sdk)
+[![JitPack](https://img.shields.io/badge/JitPack-release~18.05-brightgreen.svg)](https://jitpack.io/#play-rconf/play-rconf-sdk)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/play-rconf/play-rconf-sdk/master/LICENSE)
 
 SDK to implement new remote configuration providers
